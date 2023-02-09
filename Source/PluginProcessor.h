@@ -151,16 +151,16 @@ public:
     APVTS apvts{ *this, nullptr, "Parameters", createParameterLayout() };
 
 private:
-    CompressorBand compressor;
+    std::array<CompressorBand, 3> compressors;
+    CompressorBand& lowBandComp = compressors[0];
+    CompressorBand& midBandComp = compressors[1];
+    CompressorBand& highBandComp = compressors[2];
 
     using Filter = juce::dsp::LinkwitzRileyFilter<float>;
     //      fc0     fc1  
     Filter  LP1,    AP2,
             HP1,    LP2,
             HP2;
-
-    /*Filter invAP1, invAP2;
-    juce::AudioBuffer<float> invAPBuffer;*/
 
     juce::AudioParameterFloat* lowMidCrossover{ nullptr };
     juce::AudioParameterFloat* midHighCrossover{ nullptr };
