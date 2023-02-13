@@ -75,8 +75,8 @@ namespace Params
             { Solo_Low_Band, "Solo Low Band" },
             { Solo_Mid_Band, "Solo Mid Band" },
             { Solo_High_Band, "Solo High Band" },
-            {Gain_In, "Gain In"},
-            {Gain_Out, "Gain Out"},
+            { Gain_In, "Gain In" },
+            { Gain_Out, "Gain Out" },
         };
 
         return params;
