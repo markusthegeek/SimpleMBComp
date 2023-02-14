@@ -110,15 +110,15 @@ struct Placeholder : juce::Component
     juce::Colour customColor;
 };
 //==============================================================================
-struct RotarySlider : juce::Slider
-{
-    RotarySlider() :
-        juce::Slider(
-            juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag,
-            juce::Slider::TextEntryBoxPosition::NoTextBox
-        )
-    {}
-};
+//struct RotarySlider : juce::Slider
+//{
+//    RotarySlider() :
+//        juce::Slider(
+//            juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag,
+//            juce::Slider::TextEntryBoxPosition::NoTextBox
+//        )
+//    {}
+//};
 //==============================================================================
 template<
     typename Attachment,
@@ -131,7 +131,7 @@ void makeAttachment(
     std::unique_ptr<Attachment>& attachment,
     APVTS& apvts,
     const Params& params,
-    const ParamName name,
+    const ParamName& name,
     SliderType& slider
 )
 {
@@ -141,7 +141,19 @@ void makeAttachment(
         slider
     );
 }
+//==============================================================================
+template<
+    typename APVTS,
+    typename Params,
+    typename Name
+>
+juce::RangedAudioParameter& getParam(APVTS& apvts, const Params& params, const Name& name)
+{
+    auto param = apvts.getParameter(params.at(name));
+    jassert(param != nullptr);
 
+    return *param;
+}
 //==============================================================================
 struct GlobalControls : juce::Component
 {
@@ -151,7 +163,8 @@ struct GlobalControls : juce::Component
 
     void resized() override;
 private:
-    RotarySlider inGainSlider, lowMidXoverSlider, midHighXoverSlider, outGainSlider;
+    using RSWL = RotarySliderWithLabels;
+    std::unique_ptr<RSWL> inGainSlider, lowMidXoverSlider, midHighXoverSlider, outGainSlider;
 
     using Attachment = juce::AudioProcessorValueTreeState::SliderAttachment;
     std::unique_ptr<Attachment>
