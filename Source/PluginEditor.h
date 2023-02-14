@@ -35,12 +35,15 @@ struct RotarySliderWithLabels : juce::Slider
 {
 public:
     RotarySliderWithLabels(
-        juce::RangedAudioParameter& rap, const juce::String unitSuffix) :
+        juce::RangedAudioParameter& rap, 
+        const juce::String& unitSuffix,
+        const juce::String& title) :
         juce::Slider(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag,
             juce::Slider::TextEntryBoxPosition::NoTextBox),
         param(&rap),
         suffix(unitSuffix)
     {
+        setName(title);
         setLookAndFeel(&lnf);
     }
 
