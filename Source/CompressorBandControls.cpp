@@ -16,7 +16,7 @@ CompressorBandControls::CompressorBandControls(juce::AudioProcessorValueTreeStat
     apvts(apv),
     attackSlider(nullptr, "ms", "ATTACK"),
     releaseSlider(nullptr, "ms", "RELEASE"),
-    thresholdSlider(nullptr, "ms", "THRESH"),
+    thresholdSlider(nullptr, "dB", "THRESH"),
     ratioSlider(nullptr, "")
 {
     addAndMakeVisible(attackSlider);
