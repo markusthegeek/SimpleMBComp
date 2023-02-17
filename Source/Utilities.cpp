@@ -36,7 +36,7 @@ juce::String getValString(
     return str;
 }
 //==============================================================================
-void drawModuleBackground(
+juce::Rectangle<int> drawModuleBackground(
     juce::Graphics& g,
     juce::Rectangle<int> bounds
 )
@@ -52,4 +52,6 @@ void drawModuleBackground(
     g.fillRoundedRectangle(bounds.toFloat(), 3);
 
     g.drawRect(localBounds);
+
+    return bounds;
 }
